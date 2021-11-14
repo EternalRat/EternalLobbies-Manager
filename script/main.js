@@ -1,5 +1,7 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain } = require('electron')
+const {app, BrowserWindow, ipcMain } = require('electron');
+//const sshSingleton = require("./sshConn");
+//const ssh = new sshSingleton().getInstance();
 const path = require('path')
 const ipc = ipcMain;
 
@@ -17,7 +19,8 @@ function createWindow () {
       devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
-  })
+  });
+  //ssh.initConnexion("", 22, "", "");
 
   // and load the index.html of the app.
   mainWindow.loadFile('web/index.html')

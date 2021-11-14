@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "eternallobbies-manager",
   "version": "1.0.0",
   "description": "An application made to get files on a VPS",
   "main": "script/main.js",
@@ -16,5 +16,8 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^15.3.1"
+  },
+  "dependencies": {
+    "ssh2": "^1.5.0"
   }
 }

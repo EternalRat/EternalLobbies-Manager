@@ -60,6 +60,7 @@ ticketBtn.addEventListener('click', () => {
     ticketPage.style.visibility = 'visible';
     accountPage.style.visibility = 'hidden';
     oldDisplayedPage = displayedPage.TICKET;
+    ipc.send("createTicketsApp");
 });
 
 accountBtn.addEventListener('click', () => {
