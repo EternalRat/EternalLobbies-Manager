@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+		<link href="./styles/styles.css" rel="stylesheet">
+		<title>EternalLobbies Manager</title>
+	</head>
+	<body>
+		<div class="mainApp">
+			<div class="topBar">
+				<div class="titleBar">
+					<button id="showHideMenu" class="toggleButton"></button>
+					<div class="title">
+						EternalLobbies Manager
+					</div>
+				</div>
+				<div class="titleBarBtns">
+					<button id="minimizeBtn" class="topBtn minimizeBtn"></button>
+					<button id="maxMinBtn" class="topBtn maxMinBtn"></button>
+					<button id="closeBtn" class="topBtn closeBtn"></button>
+				</div>
+			</div>
+			<div class="contentArea">
+				<div id="mySideBar" class="leftMenu">
+					<div class="sideBtns">
+						<div class="sideButton sideBtnHome">
+							<button id="homeBtn" class="sideBtn homeBtn"><img src="images/sideBar/home.png"> Page d'accueil</button>
+						</div>
+						<div class="sideButton sideBtnTicket">
+							<button id="ticketBtn" class="sideBtn ticketBtn"><img src="images/sideBar/ticket.png"> Voir les tickets</button>
+						</div>
+						<div class="sideButton sideBtnAccount">
+							<button id="accountBtn" class="sideBtn accountBtn"><img src="images/sideBar/compte.png"> Comptes prêts</button>
+						</div>
+					</div>
+				</div>
+				<div class="contentPages">
+					<div class="homePage">
+						<h1>Welcome to EternalLobbies Manager.</h1>
+						<h3>Just click on the hamburger menu and select the menu you want to display.</h3>
+					</div>
+					<div class="ticketPage"></div>
+					<div class="accountPage"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- You can also require other files to run in this process -->
+		<script src="js/app.js"></script>
+	</body>
+</html>

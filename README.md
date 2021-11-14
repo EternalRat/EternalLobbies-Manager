@@ -1,0 +1,1 @@
+# A basic application made in Electron for myself

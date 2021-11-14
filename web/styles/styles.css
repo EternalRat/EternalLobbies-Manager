@@ -1,0 +1,189 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #949AA7;
+    background-color: #2C313C;
+}
+
+.mainApp{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #343B48;
+    -webkit-box-sizing: border-box;
+}
+
+.mainApp > .topBar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    border-bottom: 3px solid #343B48;
+    background-color: #181D23;
+    -webkit-user-select: none;
+}
+
+.topBar > .titleBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.titleBar > .toggleButton {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url('../images/menu.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.titleBar > .toggleButton:hover {
+    background-color: #272C16;
+}
+
+.titleBar > .toggleButton:active {
+    background-color: #4F9FEE;
+}
+
+.titleBar > .title {
+    margin-left: 10px;
+    width: 100%;
+    line-height: 30px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    -webkit-app-region: drag;
+}
+
+.topBar > .titleBarBtns {
+    display: flex;
+    flex-direction: row;
+    width: 120px;
+    height: 40px;
+}
+
+.titleBarBtns > .topBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.titleBarBtns > .topBtn:hover {
+    background-color: #414925;
+}
+
+.titleBarBtns > .topBtn:active {
+    background-color: #414925;
+}
+
+.titleBarBtns > .closeBtn:hover {
+    background-color: #ff0000;
+}
+
+.titleBarBtns > .closeBtn:active {
+    background-color: #ff0000;
+}
+
+.titleBarBtns > .minimizeBtn {
+    background-image: url("../images/minimize.png");
+}
+
+.titleBarBtns > .maxMinBtn {
+    background-image: url("../images/reduce.png");
+}
+
+.titleBarBtns > .closeBtn {
+    background-image: url("../images/close.png");
+}
+
+.mainApp > .contentArea {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.contentArea > .leftMenu {
+    width: 0px;
+    height: 100%;
+    background-color: #463a3a;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+}
+
+.leftMenu > .sideBtns {
+    visibility: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+.sideBtns .sideBtn {
+    width: 100%;
+    height: 40px;
+    color: white;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.sideBtns > .sideButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideButton img {
+    width: 30px;
+    height: 30px;
+    vertical-align:middle
+}
+
+.sideBtns .sideBtn:hover {
+    background-color: #656958;
+}
+
+.sideBtns .sideBtn:active {
+    background-color: #4F9FEE;
+}
+
+.contentArea > .contentPages {
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    display: -webkit-box;
+}
+
+.contentPages > .homePage {
+    visibility: visible;
+}
+
+.contentPages > .ticketPage {
+    visibility: hidden;
+}
+
+.contentPages > .accountPage {
+    visibility: hidden;
+}
