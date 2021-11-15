@@ -1,37 +1,44 @@
-const Client = require("ssh2").Client;
+const Client = require("ssh2-sftp-client");
 
 class sshConnexion {    
 
-    _ssh = new Client();
-
-    constructor() {};
+    _sftp;
+    _client;
 
     /**
      * 
-     * @param {String} hostname 
-     * @param {Number} port 
-     * @param {String} username 
-     * @param {String} password 
+     * @param {Client.ConnectOptions} config 
      */
-    initConnexion(hostname, port, username, password) {
-        this._ssh.connect(
-            {
-                host: hostname,
-                port: port,
-                username: username,
-                password: password
-            }
-        );
+    constructor(config) {
+        this._client = new Client();
+        this._sftp = this._client.connect(config);
+    };
+
+    getFiles() {
+        this._sftp.then(() => {
+            return this._client.list('./');
+        }).then(data => {
+            
+        }).catch(err => {
+            
+        });
     }
 
+    downloadFile() {
 
+    }
 };
 
 module.exports = class sshSingleton {
 
     constructor() {
         if (!sshSingleton.instance) {
-            sshSingleton.instance = new sshConnexion();
+            sshSingleton.instance = new sshConnexion({
+                host: process.env.HOSTNAME,
+                port: 22,
+                username: process.env.USER,
+                password: process.env.PASSWORD
+            });
         }
     }
   

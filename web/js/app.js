@@ -1,4 +1,6 @@
 const {ipcRenderer} = require("electron");
+/* const sshSingleton = require("../../script/sshConn");
+const ssh = new sshSingleton().getInstance(); */
 const maxMinBtn = document.getElementById("maxMinBtn");
 const mySideBar = document.getElementById("mySideBar");
 const sideBtns = document.getElementsByClassName("sideBtns")[0];
@@ -10,7 +12,7 @@ const displayedPage = {
     HOME: 1,
     TICKET: 2,
     ACCOUNT: 3
-},
+};
 var oldDisplayedPage = displayedPage.HOME;
 var isLeftMenuActive = false;
 
@@ -59,7 +61,7 @@ ticketBtn.addEventListener('click', () => {
     homePage.style.visibility = 'hidden';
     ticketPage.style.visibility = 'visible';
     accountPage.style.visibility = 'hidden';
-    oldDisplayedPage = displayedPage.TICKET;
+    oldDisplayedPage = displayedPage.TICKET;    
     ipc.send("createTicketsApp");
 });
 

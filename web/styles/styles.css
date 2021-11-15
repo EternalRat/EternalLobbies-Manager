@@ -42,7 +42,7 @@ html, body{
     border: none;
     outline: none;
     background-color: transparent;
-    background-image: url('../images/menu.png');
+    background-image: url('../images/titleBar/menu.png');
     background-repeat: no-repeat;
     background-position: center;
     transition: 0.2s;
@@ -102,15 +102,15 @@ html, body{
 }
 
 .titleBarBtns > .minimizeBtn {
-    background-image: url("../images/minimize.png");
+    background-image: url("../images/titleBar/minimize.png");
 }
 
 .titleBarBtns > .maxMinBtn {
-    background-image: url("../images/reduce.png");
+    background-image: url("../images/titleBar/reduce.png");
 }
 
 .titleBarBtns > .closeBtn {
-    background-image: url("../images/close.png");
+    background-image: url("../images/titleBar/close.png");
 }
 
 .mainApp > .contentArea {
