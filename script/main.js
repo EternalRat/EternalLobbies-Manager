@@ -35,12 +35,21 @@ function createWindow () {
 	});
 
 	ipc.on('createTicketsApp', async() => {
-		var files;
-    await ssh.getInstance().getFiles().then(datas => {
-      files = datas;
-    });
-    console.log(files);
+		var files = new Array();
+		await ssh.getInstance().getFiles().then(datas => {
+			files = datas;
+		});
+		var test = "<p>";
+		files.forEach(file => {
+			test += file.fileName + '</br>';
+		})
+		test += '</p>';
+		mainWindow.webContents.send("ticket", test);
 	});
+
+  ipc.on("displayAccounts", async() => {
+
+  });
 
 	ipc.on('closeApp', () => {
 		mainWindow.close();

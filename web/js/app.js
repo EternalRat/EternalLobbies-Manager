@@ -1,6 +1,5 @@
-const {ipcRenderer} = require("electron");
-/* const sshSingleton = require("../../script/sshConn");
-const ssh = new sshSingleton().getInstance(); */
+const { ipcRenderer } = require("electron");
+/* const sshSingleton = require("../../script/sshConn"); */
 const maxMinBtn = document.getElementById("maxMinBtn");
 const mySideBar = document.getElementById("mySideBar");
 const sideBtns = document.getElementsByClassName("sideBtns")[0];
@@ -15,6 +14,10 @@ const displayedPage = {
 };
 var oldDisplayedPage = displayedPage.HOME;
 var isLeftMenuActive = false;
+
+ipc.on("ticket", (evt, args) => {
+    ticketPage.innerHTML = args;
+});
 
 minimizeBtn.addEventListener('click', ()=>{
     ipc.send('minimizeApp');
@@ -61,7 +64,7 @@ ticketBtn.addEventListener('click', () => {
     homePage.style.visibility = 'hidden';
     ticketPage.style.visibility = 'visible';
     accountPage.style.visibility = 'hidden';
-    oldDisplayedPage = displayedPage.TICKET;    
+    oldDisplayedPage = displayedPage.TICKET; 
     ipc.send("createTicketsApp");
 });
 
@@ -75,6 +78,7 @@ accountBtn.addEventListener('click', () => {
     ticketPage.style.visibility = 'hidden';
     accountPage.style.visibility = 'visible';
     oldDisplayedPage = displayedPage.ACCOUNT;
+    ipc.send("displayAccounts");
 });
 
 function removeElem() {
