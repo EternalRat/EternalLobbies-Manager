@@ -14,14 +14,21 @@ class sshConnexion {
         this._sftp = this._client.connect(config);
     };
 
-    getFiles() {
-        this._sftp.then(() => {
+    async getFiles() {
+        let files = new Array();
+        await this._sftp.then(() => {
             return this._client.list('./');
-        }).then(data => {
-            
+        }).then(datas => {
+            datas.forEach(data => {
+                if (data.type === '-')
+                    files.push({"fileName": data.name});
+            });
         }).catch(err => {
-            
+            files[0] = {
+                "error": err
+            };
         });
+        return files;
     }
 
     downloadFile() {

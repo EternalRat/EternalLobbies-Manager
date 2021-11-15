@@ -34,8 +34,12 @@ function createWindow () {
 		}
 	});
 
-	ipc.on('createTicketsApp', () => {
-		ssh.getInstance().getFiles();
+	ipc.on('createTicketsApp', async() => {
+		var files;
+    await ssh.getInstance().getFiles().then(datas => {
+      files = datas;
+    });
+    console.log(files);
 	});
 
 	ipc.on('closeApp', () => {
