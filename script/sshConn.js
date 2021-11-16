@@ -1,58 +1,87 @@
-const Client = require("ssh2-sftp-client");
+const { Client, ConnectConfig } = require("ssh2");
 
-class sshConnexion {    
+class sshConnexion {
 
-    _sftp;
-    _client;
+	//_sftp;
+	_client;
 
-    /**
-     * 
-     * @param {Client.ConnectOptions} config 
-     */
-    constructor(config) {
-        this._client = new Client();
-        this._sftp = this._client.connect(config);
-    };
+	/**
+	 * 
+	 * @param {ConnectConfig} config 
+	 */
+	constructor(config) {
+		this._client = new Client();
+		this._client.connect(config);
+	};
 
-    async getFiles() {
-        let files = new Array();
-        await this._sftp.then(() => {
-            return this._client.list('./');
-        }).then(datas => {
-            datas.forEach(data => {
-                if (data.type === '-')
-                    files.push({"fileName": data.name});
-            });
-        }).catch(err => {
-            files[0] = {
-                "error": err
-            };
-        });
-        return files;
-    }
+	getFiles() {
+		let files = new Array();
+		this._client.sftp((err, sftp) => {
+			if (err) throw err;
+			sftp.readdir('./tickets/', (err, list) => {
+				if (err) throw err;
+				list.forEach(file => {
+					files.push({ fileName: file.filename });
+				})
+			});
+		});
+		return new Promise((resolve, reject) => {
+			setTimeout(() => resolve(files), 200);
+		});
+	}
 
-    downloadFile() {
+	/**
+	 * 
+	 * @param {String} fileName 
+	 */
+	getFileContent(fileName) {
+		var m_fileBuffer;
+		this._client.sftp((err, sftp) => {
+			if (err) throw err;
+			var dataLength = 0;
+			var data = new Array();
+			var stream = sftp.createReadStream("./tickets/" + fileName);
+			stream.on('data', (d) => {
+				data.push(d);
+				dataLength += d.length;
+			})
+			.on('error', (e) => {
+				throw e;
+			})
+			.on('close', () => {
+				m_fileBuffer = Buffer.concat(data, dataLength);
+				sftp.end();
+			});
+		});
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve(m_fileBuffer.toString('utf8'));
+			}, 200);
+		});
+	}
 
-    }
+	downloadFile() {
+
+	}
 };
 
 module.exports = class sshSingleton {
 
-    constructor() {
-        if (!sshSingleton.instance) {
-            sshSingleton.instance = new sshConnexion({
-                host: process.env.HOSTNAME,
-                port: 22,
-                username: process.env.USER,
-                password: process.env.PASSWORD
-            });
-        }
-    }
-  
-    /**
-     * @returns {sshConnexion}
-     */
-    getInstance() {
-        return sshSingleton.instance;
-    }
+	constructor() {
+		if (!sshSingleton.instance) {
+			sshSingleton.instance = new sshConnexion({
+				host: process.env.HOSTNAME,
+				port: 22,
+				username: process.env.USER,
+				password: process.env.PASSWORD
+			});
+		}
+	}
+
+	/**
+	 * @returns {sshConnexion}
+	 */
+	getInstance() {
+		return sshSingleton.instance;
+	}
 }

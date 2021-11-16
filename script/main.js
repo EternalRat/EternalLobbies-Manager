@@ -39,17 +39,26 @@ function createWindow () {
 		await ssh.getInstance().getFiles().then(datas => {
 			files = datas;
 		});
-		var test = "<p>";
-		files.forEach(file => {
-			test += file.fileName + '</br>';
+		var htmlContent = "<div class='menu'><div class='files'>";
+		files.forEach((file, index) => {
+			htmlContent += `<div class="file"><h3>Ticket ${parseFileName(file.fileName)}</h3><button id="previewBtn" class="filesBtn previewBtn" data-index="${index}" alt="Preview"></button><button id="downloadBtn" class="filesBtn downloadBtn" data-index="${index}" alt="Download"></button></div>`;
 		})
-		test += '</p>';
-		mainWindow.webContents.send("ticket", test);
+		htmlContent += '</div><div class="preview"></div></div>';
+		mainWindow.webContents.send("ticket", htmlContent);
 	});
 
-  ipc.on("displayAccounts", async() => {
+	ipc.on('previewHTMLFiles', async(evt, args) => {
+		var files = new Array();
+		//files = ssh.getInstance().getFiles();
+		await ssh.getInstance().getFiles().then(datas => {
+			files = datas;
+		});
+		mainWindow.webContents.send("previewHTMLFile", await ssh.getInstance().getFileContent(files[args].fileName));
+	})
 
-  });
+	ipc.on("displayAccounts", async() => {
+
+	});
 
 	ipc.on('closeApp', () => {
 		mainWindow.close();
@@ -62,6 +71,14 @@ function createWindow () {
 	mainWindow.on('unmaximize', () => {
 		mainWindow.webContents.send("isRestored");
 	});
+}
+
+/**
+ * 
+ * @param {String} fileName 
+ */
+function parseFileName(fileName) {
+	return fileName.slice(fileName.lastIndexOf("_") + 1, fileName.lastIndexOf("."));
 }
 
 app.whenReady().then(() => {
