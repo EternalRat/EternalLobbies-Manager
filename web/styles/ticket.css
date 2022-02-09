@@ -1,0 +1,104 @@
+.ticket > .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    padding-bottom: 20px;
+}
+
+.info > .info__guild-icon-container {
+    flex: 0;
+}
+
+.info__guild-icon-container > .info__guild-icon {
+    border-radius: 100%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.info > .info__metadata {
+    color: #DCDDDE;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.info__metadata > .info__guild-name {
+    font-size: 40px;
+}
+
+.preview #chat {
+    max-height: 55%;
+    /* justify-content: center; */
+    /* align-items: center; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 20px;
+    border: 3px solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2em #aaa;
+    /* background-color: #36393E; */
+}
+
+.preview #conv {
+    margin: 0 0;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+    margin-left: 2%;
+    font-size: 16px;
+    color: #DCDDDE;
+}
+
+#conv > #username {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#conv > #timestamp {
+    color: #707070;
+    text-shadow: 0px 0px 0.8px rgb(255, 255, 255);
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999999;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #36393E;
+}
+
+#chat > .chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    margin: 0 10px;
+    padding: 15px 0;
+    border-top: 1px solid;
+}
+
+.chatlog__message-group > .chatlog__author-avatar-container {
+    flex: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar-container > .chatlog__author-avatar {
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__message-group > .chatlog__messages {
+    flex: 1;
+    min-width: 50%;
+}

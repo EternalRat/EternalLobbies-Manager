@@ -1,0 +1,107 @@
+.contentPages > .ticketPage {
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    position: absolute;
+    left: 0;
+}
+
+.contentPages > .tPage {
+    width: 100%;
+    height: 100%;
+}
+
+.menu {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    position: absolute;
+}
+
+.files {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.file {
+    width: 100%;
+    height: 20px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    left: 0;
+}
+
+.fileTxt {
+    display: flex;
+    width: 65%;
+}
+
+.filesBtn {
+    display: flex;
+    width: 30%;
+}
+
+.previewBtn:hover,
+.downloadBtn:hover {
+    background-color: #656958;
+}
+
+.previewBtn:active,
+.downloadBtn:active {
+    background-color: #4F9FEE;
+}
+
+.previewBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-left: 5px;
+    background-image: url("../images/titleBar/close.png");
+}
+
+.downloadBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-left: 5px;
+    background-image: url("../images/titleBar/reduce.png");
+}
+
+.preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.preview > .ticket {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}

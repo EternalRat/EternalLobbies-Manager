@@ -1,6 +1,4 @@
-const { ipcRenderer, IpcRendererEvent } = require("electron");
-/* const sshSingleton = require("../../script/sshConn"); */
-const maxMinBtn = document.getElementById("maxMinBtn");
+const { ipcRenderer } = require("electron");
 const mySideBar = document.getElementById("mySideBar");
 const sideBtns = document.getElementsByClassName("sideBtns")[0];
 const homePage = document.getElementsByClassName("homePage")[0];
@@ -16,45 +14,29 @@ var oldDisplayedPage = displayedPage.HOME;
 var isLeftMenuActive = false;
 
 ipc.on("ticket", (evt, args) => {
-    ticketPage.innerHTML = args;
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.src = "js/filesManager.js";
-    document.body.append(s);
+    ticketPage.innerHTML = args.html;
+    if (!args.error) {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "js/filesManager.js";
+        document.body.append(s);
+    }
 });
 
 /**
  *
  * @param {?} e
  */
- function preview(e) {
+function preview(e) {
 	index = Number(e.target.dataset.index);
 	ipc.send("previewHTMLFiles", index);
 }
 
-ipc.on('previewHTMLFile', 
-/**
- * 
- * @param {IpcRendererEvent} evt 
- * @param {String} args 
- */
-(evt, args) => {
-    var preview = document.getElementsByClassName('preview')[0];
-    if (preview.childElementCount !== 0)
-        preview.innerHTML = "";
-    var html = args.slice(args.indexOf('<div class="ticket">'), args.lastIndexOf('</div>') + '</div>'.length);
-    preview.innerHTML = html;
-});
-
-minimizeBtn.addEventListener('click', ()=>{
+minimizeBtn.addEventListener('click', () => {
     ipc.send('minimizeApp');
 });
 
-maxMinBtn.addEventListener('click', ()=>{
-    ipc.send('minMaxApp');
-});
-
-closeBtn.addEventListener('click', ()=>{
+closeBtn.addEventListener('click', () => {
     ipc.send('closeApp');
 });
 

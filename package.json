@@ -1,10 +1,11 @@
 {
-  "name": "eternallobbies-manager",
+  "name": "Manager",
   "version": "1.0.0",
   "description": "An application made to get files on a VPS",
-  "main": "script/main.js",
+  "main": "build/main.js",
   "scripts": {
-    "start": "electron ."
+    "compile": "tsc && copyfiles -f web/index.html build",
+    "start": "npm run compile && electron ."
   },
   "repository": "",
   "keywords": [
@@ -15,12 +16,21 @@
   "author": "EternalRat",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@types/ssh2": "^0.5.51",
+    "@types/tunnel-ssh": "^4.1.1",
     "electron": "^15.3.1"
   },
   "dependencies": {
+    "copyfiles": "^2.4.1",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
+    "fswin": "^3.22.106",
+    "mariadb": "^2.5.5",
+    "mongoose": "^6.2.0",
+    "sequelize": "^6.15.1",
     "ssh2": "^1.5.0",
-    "ssh2-sftp-client": "^7.1.0"
+    "ssh2-sftp-client": "^7.1.0",
+    "tunnel-ssh": "^4.1.6",
+    "typescript": "^4.5.5"
   }
 }
