@@ -38,7 +38,19 @@ ipc.on('previewHTMLFiles', async(evt, args) => {
 	windowManager.getWindow("ticket").webContents.send("previewHTMLFile", await sshConnexion.getInstance().getFileContent(files[args].fileName));
 })
 
-ipc.on("displayAccounts", async() => {
+ipc.on('createAccountType', async() => {
+
+});
+
+ipc.on("displayAccountsType", async() => {
+
+});
+
+ipc.on('createAccount', async() => {
+
+});
+
+ipc.on('getAccount', async() => {
 
 });
 
